@@ -33,12 +33,7 @@ encryptionForm.addEventListener("submit", async (e) => {
     const data = await response.json();
 
     if (data.success) {
-      // --- CHANGE THIS LINE ---
-      // Instead of relying on a relative path, explicitly use the current protocol and host
-      const currentProtocol = window.location.protocol; // Will be "https:"
-      const currentHost = window.location.host; // Will be "crypto.loukyasri.pro"
-      downloadEncryptedFile.href = `${currentProtocol}//${currentHost}${data.downloadUrl}`;
-      // ------------------------
+      downloadEncryptedFile.href = `${data.downloadUrl}`;
 
       downloadEncryptedFile.textContent = "Download Encrypted File";
       downloadEncryptedFile.style.display = "inline-block";
@@ -62,16 +57,6 @@ encryptionForm.addEventListener("submit", async (e) => {
   encryptionForm.reset();
 });
 
-// Click on encrypted download
-// downloadEncryptedFile.addEventListener("click", () => {
-//   if (encryptedFileTimeoutId) {
-//     clearTimeout(encryptedFileTimeoutId);
-//     encryptedFileTimeoutId = null;
-//   }
-//   downloadEncryptedFile.style.display = "none";
-// });
-
-// Decrypt file
 // Decrypt file
 decryptionForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -85,11 +70,7 @@ decryptionForm.addEventListener("submit", async (e) => {
     const data = await response.json();
 
     if (data.success) {
-      // --- CHANGE THIS LINE ---
-      const currentProtocol = window.location.protocol;
-      const currentHost = window.location.host;
-      downloadDecryptedFile.href = `${currentProtocol}//${currentHost}${data.downloadUrl}`;
-      // ------------------------
+      downloadDecryptedFile.href = `${data.downloadUrl}`;
 
       downloadDecryptedFile.textContent = "Download Decrypted File";
       downloadDecryptedFile.style.display = "inline-block";
@@ -112,14 +93,6 @@ decryptionForm.addEventListener("submit", async (e) => {
 
   decryptionForm.reset();
 });
-// Click on decrypted download
-// downloadDecryptedFile.addEventListener("click", () => {
-//   if (decryptedFileTimeoutId) {
-//     clearTimeout(decryptedFileTimeoutId);
-//     decryptedFileTimeoutId = null;
-//   }
-//   downloadDecryptedFile.style.display = "none";
-// });
 
 // text encryption and decryption
 const encryptionTextForm = document.querySelector("#encryptionTextForm");

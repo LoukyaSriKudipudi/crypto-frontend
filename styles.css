@@ -106,6 +106,7 @@ textarea:focus {
 textarea {
   min-height: 8rem;
   resize: vertical;
+  width: 100%;
 }
 
 #selectCryptoMode {
