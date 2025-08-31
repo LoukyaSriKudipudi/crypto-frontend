@@ -1,31 +1,111 @@
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Body */
 body {
-  max-width: 700px;
   font-family: "Inter", sans-serif;
-  width: 100vw;
-  margin: auto auto;
-  background-color: #fffafa;
-  height: 100vh;
-  justify-content: center;
-  align-content: center;
+  background: #f9f9fb;
+  color: #222;
+  line-height: 1.5;
 }
 
+/* Wrapper to control max-width */
+.wrapper {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Header */
 header {
-  background-color: #fff;
-  padding: 1em;
-  font-size: 0.8rem;
-  border-radius: 0.5em;
-  border: 1px solid #aaa;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+header h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111;
+}
+
+/* Dropdown */
+#selectMode {
+  background: #f9f9fb;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Main Container */
+.mainContainer {
+  width: 100%;
+}
+
+/* Card */
+.container {
+  width: 100%; /* FIX: fill wrapper width */
+  background: #fff;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+}
+
+.container h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* Forms */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+input,
+textarea,
+button {
+  font-family: inherit;
+  font-size: 0.95rem;
+  border-radius: 0.5rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid #ddd;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+  outline: none;
+}
+
+textarea {
+  min-height: 8rem;
+  resize: vertical;
 }
 
 #selectCryptoMode {
@@ -36,81 +116,91 @@ header {
   border-radius: 5px;
   border: 1px solid #aaa;
 }
-
-.container {
-  background-color: #fff;
-  margin-top: 0.5em;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  border: 1px solid #aaa;
-  border-radius: 0.5em;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+/* Buttons */
+button {
+  background: #6366f1;
+  color: #fff;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
 }
 
-.container h2 {
-  font-size: 1rem;
+button:hover {
+  background: #4f46e5;
 }
 
-.container form {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
+button:active {
+  transform: scale(0.98);
 }
 
-.container form input,
-button,
-textarea {
-  padding: 1em;
-  font-family: "Inter", sans-serif;
-  outline: none;
-  border-radius: 0.5em;
-  border: 1px solid #aaa;
-}
-
-textarea {
-  height: 10em;
-  overflow-y: auto;
-  width: 100%;
-  margin-top: 5px;
-}
-
+/* Output container with copy btn */
 .outputContainer {
   position: relative;
-  margin-top: 10px;
 }
 
 .outputContainer button {
   position: absolute;
-  top: 1em;
-  right: 1em;
-  width: 5em;
-  background-color: #fffafa;
-  color: #1c1b1a;
-  font-weight: 700;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.7rem;
+  background: #f3f4f6;
+  color: #111;
+  border: 1px solid #ddd;
 }
 
-button:hover {
-  background-color: #fff;
-  color: #1c1b1a;
+.outputContainer button:hover {
+  background: #e5e7eb;
 }
 
+/* File input styling */
 input[type="file"]::file-selector-button {
-  background-color: #fffafa;
-  padding: 5px 20px;
-  margin-right: 20px;
-  border-radius: 5px;
-  border: 1px solid #aaa;
+  background: #f3f4f6;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
 }
 
-.container a {
-  font-size: 0.8rem;
-  text-decoration: none;
-  color: #7950f2;
-  font-weight: 700;
+input[type="file"]::file-selector-button:hover {
+  background: #e5e7eb;
 }
+
+/* Links */
+.container a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #6366f1;
+  text-decoration: none;
+}
+
+.container a:hover {
+  text-decoration: underline;
+}
+
+/* Messages */
 .message {
-  font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #d97706;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  #selectMode {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .container {
+    padding: 1rem;
+  }
 }

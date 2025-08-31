@@ -11,140 +11,153 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header>
-      <h1>Crypto</h1>
-      <div>
+    <div class="wrapper">
+      <header>
+        <h1>Crypto</h1>
+      </header>
+      <div id="selectMode">
         <label for="selectCryptoMode"> Select Encryption Mode</label>
         <select name="select" id="selectCryptoMode">
-          <option value="text">Text</option>
           <option value="file">File</option>
+          <option value="text">Text</option>
         </select>
       </div>
-    </header>
-    <main>
-      <!-- FILE MODE -->
-      <section class="mainContainer" data-type="file">
-        <section class="container">
-          <h2>Encrypt File</h2>
-          <form id="encryptionForm" enctype="multipart/form-data">
-            <input type="file" name="file" id="encryptionFile" />
-            <input
-              type="password"
-              name="encryptionKey"
-              id="fileEncryptionKey"
-              placeholder="Enter Encryption Key"
-              autocomplete="off"
-            />
-            <sub>Note: The same key is required to decrypt the same file.</sub>
-            <button type="submit">Submit</button>
-            <p
-              class="message"
-              data-mode="encryptFile"
-              style="display: none"
-            ></p>
-            <a id="downloadEncryptedFile" style="display: none">Download</a>
-          </form>
-        </section>
-
-        <section class="container">
-          <h2>Decrypt File</h2>
-          <form id="decryptionForm" enctype="multipart/form-data">
-            <input type="file" name="file" id="decryptionFile" />
-            <input
-              type="password"
-              name="decryptionKey"
-              id="fileDecryptionKey"
-              placeholder="Enter Decryption Key"
-              autocomplete="off"
-            />
-            <button type="submit">Submit</button>
-            <p
-              class="message"
-              data-mode="decryptFile"
-              style="display: none"
-            ></p>
-            <a id="downloadDecryptedFile" style="display: none">Download</a>
-          </form>
-        </section>
-      </section>
-
-      <!-- TEXT MODE -->
-      <section class="mainContainer" data-type="text">
-        <section class="container">
-          <h2>Encrypt Text</h2>
-          <form id="encryptionTextForm">
-            <input
-              type="text"
-              name="text"
-              id="encryptionText"
-              placeholder="Enter Text here"
-            />
-            <input
-              type="password"
-              name="encryptionKey"
-              id="textEncryptionKey"
-              placeholder="Enter Encryption Key"
-              autocomplete="off"
-            />
-            <sub>Note: The same key is required to decrypt the same text.</sub>
-            <p
-              class="message"
-              style="display: none"
-              data-mode="encryptText"
-            ></p>
-            <div class="outputContainer">
-              <textarea
-                name="encryptedText"
-                id="encryptedText"
+      <main>
+        <!-- FILE MODE -->
+        <section class="mainContainer" data-type="file">
+          <section class="container">
+            <h2>Encrypt File</h2>
+            <form id="encryptionForm" enctype="multipart/form-data">
+              <input type="file" name="file" id="encryptionFile" />
+              <input
+                type="password"
+                name="encryptionKey"
+                id="fileEncryptionKey"
+                placeholder="Enter Encryption Key"
+                autocomplete="off"
+              />
+              <sub
+                >Note: The same key is required to decrypt the same file.</sub
+              >
+              <button type="submit">Submit</button>
+              <p
+                class="message"
+                data-mode="encryptFile"
                 style="display: none"
-                readonly
-              ></textarea>
-              <button type="button" id="copyEncryptedBtn" style="display: none">
-                Copy
-              </button>
-            </div>
-            <button type="submit">Submit</button>
-          </form>
-        </section>
+              ></p>
+              <a id="downloadEncryptedFile" style="display: none">Download</a>
+            </form>
+          </section>
 
-        <section class="container">
-          <h2>Decrypt Text</h2>
-          <form id="decryptionTextForm">
-            <input
-              type="text"
-              name="text"
-              id="decryptionText"
-              placeholder="Enter Encrypted Text here"
-            />
-            <input
-              type="password"
-              name="decryptionKey"
-              id="textDecryptionKey"
-              placeholder="Enter Decryption Key"
-              autocomplete="off"
-            />
-            <p
-              class="message"
-              data-mode="decryptText"
-              style="display: none"
-            ></p>
-            <div class="outputContainer">
-              <textarea
-                name="decryptedText"
-                id="decryptedText"
+          <section class="container">
+            <h2>Decrypt File</h2>
+            <form id="decryptionForm" enctype="multipart/form-data">
+              <input type="file" name="file" id="decryptionFile" />
+              <input
+                type="password"
+                name="decryptionKey"
+                id="fileDecryptionKey"
+                placeholder="Enter Decryption Key"
+                autocomplete="off"
+              />
+              <button type="submit">Submit</button>
+              <p
+                class="message"
+                data-mode="decryptFile"
                 style="display: none"
-                readonly
-              ></textarea>
-              <button type="button" id="copyDecryptedBtn" style="display: none">
-                Copy
-              </button>
-            </div>
-            <button type="submit">Submit</button>
-          </form>
+              ></p>
+              <a id="downloadDecryptedFile" style="display: none">Download</a>
+            </form>
+          </section>
         </section>
-      </section>
-    </main>
 
+        <!-- TEXT MODE -->
+        <section class="mainContainer" data-type="text">
+          <section class="container">
+            <h2>Encrypt Text</h2>
+            <form id="encryptionTextForm">
+              <input
+                type="text"
+                name="text"
+                id="encryptionText"
+                placeholder="Enter Text here"
+              />
+              <input
+                type="password"
+                name="encryptionKey"
+                id="textEncryptionKey"
+                placeholder="Enter Encryption Key"
+                autocomplete="off"
+              />
+              <sub
+                >Note: The same key is required to decrypt the same text.</sub
+              >
+              <p
+                class="message"
+                style="display: none"
+                data-mode="encryptText"
+              ></p>
+              <div class="outputContainer">
+                <textarea
+                  name="encryptedText"
+                  id="encryptedText"
+                  style="display: none"
+                  readonly
+                ></textarea>
+                <button
+                  type="button"
+                  id="copyEncryptedBtn"
+                  style="display: none"
+                >
+                  Copy
+                </button>
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          </section>
+
+          <section class="container">
+            <h2>Decrypt Text</h2>
+            <form id="decryptionTextForm">
+              <input
+                type="text"
+                name="text"
+                id="decryptionText"
+                placeholder="Enter Encrypted Text here"
+              />
+              <input
+                type="password"
+                name="decryptionKey"
+                id="textDecryptionKey"
+                placeholder="Enter Decryption Key"
+                autocomplete="off"
+              />
+              <p
+                class="message"
+                data-mode="decryptText"
+                style="display: none"
+              ></p>
+              <div class="outputContainer">
+                <textarea
+                  name="decryptedText"
+                  id="decryptedText"
+                  style="display: none"
+                  readonly
+                ></textarea>
+                <button
+                  type="button"
+                  id="copyDecryptedBtn"
+                  style="display: none"
+                >
+                  Copy
+                </button>
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          </section>
+        </section>
+      </main>
+    </div>
     <script src="script.js"></script>
     <script>
       const cryptoMode = document.querySelector("#selectCryptoMode");
