@@ -20,6 +20,7 @@ function showMessage(mode, text, duration = 5000) {
 }
 
 // Encrypt file
+// Encrypt file
 encryptionForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const formData = new FormData(encryptionForm);
@@ -32,7 +33,13 @@ encryptionForm.addEventListener("submit", async (e) => {
     const data = await response.json();
 
     if (data.success) {
-      downloadEncryptedFile.href = data.downloadUrl;
+      // --- CHANGE THIS LINE ---
+      // Instead of relying on a relative path, explicitly use the current protocol and host
+      const currentProtocol = window.location.protocol; // Will be "https:"
+      const currentHost = window.location.host; // Will be "crypto.loukyasri.pro"
+      downloadEncryptedFile.href = `${currentProtocol}//${currentHost}${data.downloadUrl}`;
+      // ------------------------
+
       downloadEncryptedFile.textContent = "Download Encrypted File";
       downloadEncryptedFile.style.display = "inline-block";
       showMessage("encryptFile", "File encrypted successfully.");
@@ -65,6 +72,7 @@ encryptionForm.addEventListener("submit", async (e) => {
 // });
 
 // Decrypt file
+// Decrypt file
 decryptionForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const formData = new FormData(decryptionForm);
@@ -77,7 +85,12 @@ decryptionForm.addEventListener("submit", async (e) => {
     const data = await response.json();
 
     if (data.success) {
-      downloadDecryptedFile.href = data.downloadUrl;
+      // --- CHANGE THIS LINE ---
+      const currentProtocol = window.location.protocol;
+      const currentHost = window.location.host;
+      downloadDecryptedFile.href = `${currentProtocol}//${currentHost}${data.downloadUrl}`;
+      // ------------------------
+
       downloadDecryptedFile.textContent = "Download Decrypted File";
       downloadDecryptedFile.style.display = "inline-block";
       showMessage("decryptFile", "File decrypted successfully.");
@@ -99,7 +112,6 @@ decryptionForm.addEventListener("submit", async (e) => {
 
   decryptionForm.reset();
 });
-
 // Click on decrypted download
 // downloadDecryptedFile.addEventListener("click", () => {
 //   if (decryptedFileTimeoutId) {
