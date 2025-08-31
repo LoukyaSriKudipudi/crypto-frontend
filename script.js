@@ -109,11 +109,18 @@ downloadDecryptedFile.addEventListener("click", () => {
   downloadDecryptedFile.style.display = "none";
 });
 
-// -------- Text Encryption/Decryption --------
+// text encryption and decryption
 const encryptionTextForm = document.querySelector("#encryptionTextForm");
 const decryptionTextForm = document.querySelector("#decryptionTextForm");
 const encryptedTextArea = document.querySelector("#encryptedText");
 const decryptedTextArea = document.querySelector("#decryptedText");
+const copyEncryptedBtn = document.querySelector("#copyEncryptedBtn");
+const copyDecryptedBtn = document.querySelector("#copyDecryptedBtn");
+const outputContainer = document.querySelectorAll(".outputContainer");
+
+outputContainer.forEach((container) => {
+  container.style.display = "none";
+});
 
 function showTextMessage(el, text, duration = 5000) {
   if (!el) return;
@@ -141,11 +148,17 @@ encryptionTextForm.addEventListener("submit", async (e) => {
         document.querySelector('[data-mode="encryptText"]'),
         "Text encrypted successfully."
       );
-      // Reset only the input fields, not the textarea
-      encryptionTextForm.querySelector("#encryptiontext").value = "";
-      encryptionTextForm.querySelector("#encryptionKey").value = "";
+
+      // Reset inputs only
+      encryptionTextForm.querySelector("#encryptionText").value = "";
+      encryptionTextForm.querySelector("#textEncryptionKey").value = "";
+
+      outputContainer.forEach((container) => {
+        container.style.display = "block";
+      });
 
       encryptedTextArea.style.display = "block";
+      copyEncryptedBtn.style.display = "inline-block";
       encryptedTextArea.value = data.encryptedText;
     } else {
       showTextMessage(
@@ -153,6 +166,7 @@ encryptionTextForm.addEventListener("submit", async (e) => {
         data.message || "Text encryption failed."
       );
       encryptedTextArea.style.display = "none";
+      copyEncryptedBtn.style.display = "none";
     }
   } catch (err) {
     console.error(err);
@@ -161,6 +175,7 @@ encryptionTextForm.addEventListener("submit", async (e) => {
       "Text encryption request failed."
     );
     encryptedTextArea.style.display = "none";
+    copyEncryptedBtn.style.display = "none";
   }
 });
 
@@ -178,16 +193,21 @@ decryptionTextForm.addEventListener("submit", async (e) => {
     });
     const data = await response.json();
 
+    outputContainer.forEach((container) => {
+      container.style.display = "block";
+    });
+
     if (data.success) {
       showTextMessage(
         document.querySelector('[data-mode="decryptText"]'),
         "Text decrypted successfully."
       );
-      // Reset only the input fields, not the textarea
-      decryptionTextForm.querySelector("#decryptiontext").value = "";
-      decryptionTextForm.querySelector("#decryptionKey").value = "";
+
+      decryptionTextForm.querySelector("#decryptionText").value = "";
+      decryptionTextForm.querySelector("#textDecryptionKey").value = "";
 
       decryptedTextArea.style.display = "block";
+      copyDecryptedBtn.style.display = "inline-block";
       decryptedTextArea.value = data.decryptedText;
     } else {
       showTextMessage(
@@ -195,6 +215,7 @@ decryptionTextForm.addEventListener("submit", async (e) => {
         data.message || "Text decryption failed."
       );
       decryptedTextArea.style.display = "none";
+      copyDecryptedBtn.style.display = "none";
     }
   } catch (err) {
     console.error(err);
@@ -203,5 +224,26 @@ decryptionTextForm.addEventListener("submit", async (e) => {
       "Text decryption request failed."
     );
     decryptedTextArea.style.display = "none";
+    copyDecryptedBtn.style.display = "none";
   }
+});
+
+// Copy encrypted text
+copyEncryptedBtn.addEventListener("click", () => {
+  encryptedTextArea.select();
+  navigator.clipboard.writeText(encryptedTextArea.value);
+  showTextMessage(
+    document.querySelector('[data-mode="encryptText"]'),
+    "Copied to clipboard!"
+  );
+});
+
+// Copy decrypted text
+copyDecryptedBtn.addEventListener("click", () => {
+  decryptedTextArea.select();
+  navigator.clipboard.writeText(decryptedTextArea.value);
+  showTextMessage(
+    document.querySelector('[data-mode="decryptText"]'),
+    "Copied to clipboard!"
+  );
 });

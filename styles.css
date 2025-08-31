@@ -72,6 +72,28 @@ textarea {
 textarea {
   height: 10em;
   overflow-y: auto;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.outputContainer {
+  position: relative;
+  margin-top: 10px;
+}
+
+.outputContainer button {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  width: 5em;
+  background-color: #fffafa;
+  color: #1c1b1a;
+  font-weight: 700;
+}
+
+button:hover {
+  background-color: #fff;
+  color: #1c1b1a;
 }
 
 input[type="file"]::file-selector-button {
@@ -80,10 +102,6 @@ input[type="file"]::file-selector-button {
   margin-right: 20px;
   border-radius: 5px;
   border: 1px solid #aaa;
-}
-
-button:hover {
-  background-color: #fff;
 }
 
 .container a {

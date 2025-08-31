@@ -14,27 +14,28 @@
     <header>
       <h1>Crypto</h1>
       <div>
-        <label for="selectType"> Select Encryption Mode</label>
+        <label for="selectCryptoMode"> Select Encryption Mode</label>
         <select name="select" id="selectCryptoMode">
-          <option value="file">File</option>
           <option value="text">Text</option>
+          <option value="file">File</option>
         </select>
       </div>
     </header>
     <main>
+      <!-- FILE MODE -->
       <section class="mainContainer" data-type="file">
         <section class="container">
           <h2>Encrypt File</h2>
           <form id="encryptionForm" enctype="multipart/form-data">
-            <input type="file" name="file" id="encryptionfile" />
+            <input type="file" name="file" id="encryptionFile" />
             <input
-              type="text"
+              type="password"
               name="encryptionKey"
-              id="encryptionKey"
+              id="fileEncryptionKey"
               placeholder="Enter Encryption Key"
               autocomplete="off"
             />
-            <sub>Note: The same key is require to decrypt the same file.</sub>
+            <sub>Note: The same key is required to decrypt the same file.</sub>
             <button type="submit">Submit</button>
             <p
               class="message"
@@ -44,14 +45,15 @@
             <a id="downloadEncryptedFile" style="display: none">Download</a>
           </form>
         </section>
+
         <section class="container">
           <h2>Decrypt File</h2>
           <form id="decryptionForm" enctype="multipart/form-data">
-            <input type="file" name="file" id="decryptionfile" />
+            <input type="file" name="file" id="decryptionFile" />
             <input
-              type="text"
+              type="password"
               name="decryptionKey"
-              id="decryptionKey"
+              id="fileDecryptionKey"
               placeholder="Enter Decryption Key"
               autocomplete="off"
             />
@@ -61,54 +63,63 @@
               data-mode="decryptFile"
               style="display: none"
             ></p>
-            <a id="downloadDecryptedFile" style="display: none"></a>
+            <a id="downloadDecryptedFile" style="display: none">Download</a>
           </form>
         </section>
       </section>
+
+      <!-- TEXT MODE -->
       <section class="mainContainer" data-type="text">
         <section class="container">
           <h2>Encrypt Text</h2>
-          <form id="encryptionTextForm" enctype="multipart/form-data">
+          <form id="encryptionTextForm">
             <input
               type="text"
               name="text"
-              id="encryptiontext"
+              id="encryptionText"
               placeholder="Enter Text here"
             />
             <input
-              type="text"
+              type="password"
               name="encryptionKey"
-              id="encryptionKey"
+              id="textEncryptionKey"
               placeholder="Enter Encryption Key"
               autocomplete="off"
             />
-            <sub>Note: The same key is require to decrypt the same text.</sub>
+            <sub>Note: The same key is required to decrypt the same text.</sub>
             <p
               class="message"
               style="display: none"
               data-mode="encryptText"
             ></p>
-            <textarea
-              name="encryptedText"
-              id="encryptedText"
-              style="display: none"
-            ></textarea>
+            <div class="outputContainer">
+              <textarea
+                name="encryptedText"
+                id="encryptedText"
+                style="display: none"
+                readonly
+              ></textarea>
+              <button type="button" id="copyEncryptedBtn" style="display: none">
+                Copy
+              </button>
+            </div>
             <button type="submit">Submit</button>
           </form>
         </section>
+
         <section class="container">
           <h2>Decrypt Text</h2>
-          <form id="decryptionTextForm" enctype="multipart/form-data">
+          <form id="decryptionTextForm">
             <input
               type="text"
               name="text"
-              id="decryptiontext"
-              placeholder="Enter Text here"
+              id="decryptionText"
+              placeholder="Enter Encrypted Text here"
             />
             <input
-              type="text"
+              type="password"
               name="decryptionKey"
-              id="decryptionKey"
+              id="textDecryptionKey"
               placeholder="Enter Decryption Key"
               autocomplete="off"
             />
@@ -117,17 +128,23 @@
               data-mode="decryptText"
               style="display: none"
             ></p>
-            <textarea
-              name="decryptedText"
-              id="decryptedText"
-              style="display: none"
-            ></textarea>
-
+            <div class="outputContainer">
+              <textarea
+                name="decryptedText"
+                id="decryptedText"
+                style="display: none"
+                readonly
+              ></textarea>
+              <button type="button" id="copyDecryptedBtn" style="display: none">
+                Copy
+              </button>
+            </div>
             <button type="submit">Submit</button>
           </form>
         </section>
       </section>
     </main>
+
     <script src="script.js"></script>
     <script>
       const cryptoMode = document.querySelector("#selectCryptoMode");
@@ -135,15 +152,10 @@
 
       function updateContainers() {
         const selectedMode = cryptoMode.value;
-
         containers.forEach((container) => {
           const containerType = container.dataset.type;
-
-          if (selectedMode === containerType) {
-            container.style.display = "block";
-          } else {
-            container.style.display = "none";
-          }
+          container.style.display =
+            selectedMode === containerType ? "block" : "none";
         });
       }
       updateContainers();
