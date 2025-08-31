@@ -56,13 +56,13 @@ encryptionForm.addEventListener("submit", async (e) => {
 });
 
 // Click on encrypted download
-downloadEncryptedFile.addEventListener("click", () => {
-  if (encryptedFileTimeoutId) {
-    clearTimeout(encryptedFileTimeoutId);
-    encryptedFileTimeoutId = null;
-  }
-  downloadEncryptedFile.style.display = "none";
-});
+// downloadEncryptedFile.addEventListener("click", () => {
+//   if (encryptedFileTimeoutId) {
+//     clearTimeout(encryptedFileTimeoutId);
+//     encryptedFileTimeoutId = null;
+//   }
+//   downloadEncryptedFile.style.display = "none";
+// });
 
 // Decrypt file
 decryptionForm.addEventListener("submit", async (e) => {
@@ -101,13 +101,13 @@ decryptionForm.addEventListener("submit", async (e) => {
 });
 
 // Click on decrypted download
-downloadDecryptedFile.addEventListener("click", () => {
-  if (decryptedFileTimeoutId) {
-    clearTimeout(decryptedFileTimeoutId);
-    decryptedFileTimeoutId = null;
-  }
-  downloadDecryptedFile.style.display = "none";
-});
+// downloadDecryptedFile.addEventListener("click", () => {
+//   if (decryptedFileTimeoutId) {
+//     clearTimeout(decryptedFileTimeoutId);
+//     decryptedFileTimeoutId = null;
+//   }
+//   downloadDecryptedFile.style.display = "none";
+// });
 
 // text encryption and decryption
 const encryptionTextForm = document.querySelector("#encryptionTextForm");
