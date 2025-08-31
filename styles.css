@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 700px;
+  font-family: "Inter", sans-serif;
+  width: 100vw;
+  margin: auto auto;
+  background-color: #fffafa;
+  height: 100vh;
+  justify-content: center;
+  align-content: center;
+}
+
+header {
+  background-color: #fff;
+  padding: 1em;
+  font-size: 0.8rem;
+  border-radius: 0.5em;
+  border: 1px solid #aaa;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#selectCryptoMode {
+  background-color: #fffafa;
+  padding: 5px 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+}
+
+.container {
+  background-color: #fff;
+  margin-top: 0.5em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  border: 1px solid #aaa;
+  border-radius: 0.5em;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.container h2 {
+  font-size: 1rem;
+}
+
+.container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.container form input,
+button,
+textarea {
+  padding: 1em;
+  font-family: "Inter", sans-serif;
+  outline: none;
+  border-radius: 0.5em;
+  border: 1px solid #aaa;
+}
+
+textarea {
+  height: 10em;
+  overflow-y: auto;
+}
+
+input[type="file"]::file-selector-button {
+  background-color: #fffafa;
+  padding: 5px 20px;
+  margin-right: 20px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+}
+
+button:hover {
+  background-color: #fff;
+}
+
+.container a {
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: #7950f2;
+  font-weight: 700;
+}
+.message {
+  font-weight: 700;
+  font-size: 0.8rem;
+}
